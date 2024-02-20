@@ -1,0 +1,42 @@
+﻿<MudIconButton Icon="@Icons.Material.Filled.Search" aria-label="Search" @onclick="ToggleSearch"></MudIconButton>
+
+@if (showSearch)
+{
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-50 flex justify-center items-center" @onclick="CloseSearchBar">
+        <MudPaper Elevation="1" Class="p-4" @onclick="PreventClose">
+            <div class="flex items-center">
+                <MudIcon Icon="@Icons.Material.Filled.Search" Class="mr-2" />
+                <input type="text" class="form-input flex-grow" placeholder="Search..." />
+            </div>
+            <div class="mt-4">
+                <ul class="list-disc list-inside">
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                    <!-- Add more items as needed -->
+                </ul>
+            </div>
+        </MudPaper>
+    </div>
+}
+
+@code {
+    bool showSearch = false;
+
+    void ToggleSearch()
+    {
+        showSearch = !showSearch;
+    }
+
+    void CloseSearchBar()
+    {
+        showSearch = false;
+    }
+
+    void PreventClose()
+    {
+        // Prevent the event from bubbling up and closing the search bar
+        // when clicking inside the MudPaper
+        // This is necessary to keep the search bar open while interacting with it
+    }
+}

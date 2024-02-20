@@ -1,0 +1,60 @@
+﻿
+
+<style>
+    .hand-cursor {
+        cursor: pointer;
+    }
+</style>
+
+<MudButton  Color="Color.Inherit" Class="mr-5" OnClick="@(() => OpenDrawer(Anchor.Start))">
+    <MudIcon Icon="@Icons.Material.Outlined.Menu" Size="Size.Medium" />
+</MudButton>
+
+
+<MudDrawer @bind-Open="@open" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
+    <MudDrawerHeader>
+        <MudText Typo="Typo.h6">  Sami's Portfolio</MudText>
+    </MudDrawerHeader>
+    <MudNavMenu>
+        <div class="flex flex-col justify-center items-center space-y-4">
+            <a class="nav-link hand-cursor" @onclick="() => NavigateToHome()">HOME</a>
+            <a class="nav-link hand-cursor" @onclick="() => NavigateToAbout()">ABOUT</a>
+            <a class="nav-link hand-cursor" @onclick="() => NavigateToPricing()">PRICING</a>
+        </div>
+        <br />
+        <div class="flex flex-col justify-center items-center space-y-4">
+            <SearchBar />
+            <NotificationBtn />
+            <SwitchBtn />
+            <GithubIcon />
+
+        </div>
+    
+    </MudNavMenu>
+</MudDrawer>
+
+@code {
+    bool open;
+    Anchor anchor;
+
+    void OpenDrawer(Anchor anchor)
+    {
+        open = true;
+        this.anchor = anchor;
+    }
+
+    void NavigateToHome()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+
+    void NavigateToAbout()
+    {
+        NavigationManager.NavigateTo("/about");
+    }
+
+    void NavigateToPricing()
+    {
+        NavigationManager.NavigateTo("/pricing");
+    }
+}
